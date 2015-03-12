@@ -1,0 +1,81 @@
+object frmPrincipal: TfrmPrincipal
+  Left = 271
+  Height = 459
+  Top = 153
+  Width = 846
+  Caption = 'Reparaciones'
+  ClientHeight = 459
+  ClientWidth = 846
+  Font.CharSet = ANSI_CHARSET
+  Font.Height = -13
+  Font.Name = 'Arial'
+  Font.Pitch = fpVariable
+  Font.Quality = fqDraft
+  Position = poScreenCenter
+  LCLVersion = '1.2.6.0'
+  object ToolBar1: TToolBar
+    Left = 0
+    Height = 68
+    Top = 0
+    Width = 846
+    AutoSize = True
+    ButtonHeight = 66
+    ButtonWidth = 69
+    Caption = 'ToolBar1'
+    TabOrder = 0
+    object ToolButton1: TToolButton
+      Left = 1
+      Top = 2
+      Caption = 'ToolButton1'
+    end
+    object ToolButton2: TToolButton
+      Left = 80
+      Top = 2
+      Caption = 'ToolButton2'
+    end
+    object ToolButton3: TToolButton
+      Left = 70
+      Top = 2
+      Width = 10
+      Caption = 'ToolButton3'
+      Style = tbsSeparator
+    end
+  end
+  object StatusBar1: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 436
+    Width = 846
+    Panels = <>
+  end
+  object DBGrid1: TDBGrid
+    Left = 0
+    Height = 368
+    Top = 68
+    Width = 846
+    Align = alClient
+    Color = clWindow
+    Columns = <    
+      item
+        Title.Caption = 'Title'
+      end    
+      item
+        Title.Caption = 'Title'
+      end    
+      item
+        Title.Caption = 'Title'
+      end    
+      item
+        Title.Caption = 'Title'
+      end    
+      item
+        Title.Caption = 'Title'
+      end>
+    TabOrder = 2
+    TitleFont.CharSet = ANSI_CHARSET
+    TitleFont.Height = -13
+    TitleFont.Name = 'Arial'
+    TitleFont.Pitch = fpVariable
+    TitleFont.Quality = fqDraft
+  end
+end

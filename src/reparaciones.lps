@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="9"/>
+    <BuildModes Active="Default"/>
+    <Units Count="4">
+      <Unit0>
+        <Filename Value="reparaciones.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="reparaciones"/>
+        <UsageCount Value="20"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="frm_principal.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmPrincipal"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_principal"/>
+        <EditorIndex Value="0"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="dmgeneral.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM_General"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="dmgeneral"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="109"/>
+        <CursorPos X="52" Y="124"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="SD_Configuracion.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="SD_Configuracion"/>
+        <UsageCount Value="20"/>
+      </Unit3>
+    </Units>
+    <General>
+      <ActiveWindowIndexAtStart Value="0"/>
+    </General>
+    <JumpHistory Count="9" HistoryIndex="8">
+      <Position1>
+        <Filename Value="frm_principal.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
+      </Position1>
+      <Position2>
+        <Filename Value="dmgeneral.pas"/>
+        <Caret Line="16" Column="41" TopLine="1"/>
+      </Position2>
+      <Position3>
+        <Filename Value="dmgeneral.pas"/>
+        <Caret Line="586" Column="7" TopLine="554"/>
+      </Position3>
+      <Position4>
+        <Filename Value="dmgeneral.pas"/>
+        <Caret Line="584" Column="19" TopLine="19"/>
+      </Position4>
+      <Position5>
+        <Filename Value="dmgeneral.pas"/>
+        <Caret Line="18" Column="1" TopLine="3"/>
+      </Position5>
+      <Position6>
+        <Filename Value="dmgeneral.pas"/>
+        <Caret Line="104" Column="15" TopLine="86"/>
+      </Position6>
+      <Position7>
+        <Filename Value="dmgeneral.pas"/>
+        <Caret Line="246" Column="19" TopLine="226"/>
+      </Position7>
+      <Position8>
+        <Filename Value="dmgeneral.pas"/>
+        <Caret Line="238" Column="1" TopLine="229"/>
+      </Position8>
+      <Position9>
+        <Filename Value="dmgeneral.pas"/>
+        <Caret Line="55" Column="80" TopLine="33"/>
+      </Position9>
+    </JumpHistory>
+  </ProjectSession>
+  <EditorMacros Count="0"/>
+</CONFIG>
