@@ -33,5 +33,7 @@ CREATE TABLE Trabajos (
 	, Diagnostico	varchar (2000)
 	, fEgreso	date
 	, Detalle	varchar (2000)
+	, bEgreso       integer default 0
+	, fCompromiso	date
 	, bVisible	integer default 1
 );

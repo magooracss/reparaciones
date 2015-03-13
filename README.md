@@ -11,6 +11,8 @@ Cualquier sugerencia o agregado, será gustosamente tenido en cuenta y el progra
 ##Desarrollo
  - Lazarus para el desarrollo
  - SQlite para la base de datos
+ - Open Icon Library para las imágenes
+
 
 ## Contacto
 

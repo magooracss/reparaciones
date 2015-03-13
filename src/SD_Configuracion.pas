@@ -11,8 +11,8 @@ const
 
   SECCION_APP = 'APLICACION';
 
-  SERVIDOR_FB = 'RUTA_FB';  //Ruta al archivo de BD
-  BASE_HOST='HOST';         //Dirección IP del HOST
+  BASE_RUTA = 'RUTA_DB';  //Ruta al archivo de BD
+  BASE_LIBRERIA='LIBRERIA';         //Libreria SQlite3.dll
 
   DIR_SERVIDOR = 'SERVIDOR';        //Ruta al archivo ejecutable
   RUTA_LISTADOS = 'RUTA_LISTADOS';

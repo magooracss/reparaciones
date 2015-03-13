@@ -94,6 +94,7 @@ type
 
 Const
   GUIDNULO = '{00000000-0000-0000-0000-000000000000}';
+  ID_NULO = -1;
 
 var
   DM_General: TDM_General;
@@ -112,22 +113,24 @@ uses
 { TDM_General }
 
 procedure TDM_General.DataModuleCreate(Sender: TObject);
+var
+  base, libreria: string;
 begin
 
   if cnxGeneral.Connected then
    cnxGeneral.Disconnect;
 
-  base:= LeerDato (SECCION_APP ,SERVIDOR_FB) ;
+  base:= LeerDato (SECCION_APP ,BASE_RUTA) ;
   if ((base <>  ERROR_APERTURA_CFG)
       and (base <> ERROR_CFG)) then
   begin
     base := base;
-    host:= LeerDato (SECCION_APP, BASE_HOST);
+    libreria:= LeerDato (SECCION_APP, BASE_LIBRERIA);
     try
       with cnxGeneral do
       begin
         Database:=  base;
-        HostName:= host;
+        LibraryLocation:= libreria;
         Connect;
       end;
     except

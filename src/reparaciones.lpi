@@ -18,7 +18,7 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="1"/>
-      <BuildNr Value="1"/>
+      <BuildNr Value="2"/>
       <Language Value="040A"/>
       <StringTable CompanyName="RACSS Programación - Carlos Enrique Rodriguez" LegalCopyright="Carlos Enrique Rodriguez - RACSS Programación" ProductVersion=""/>
     </VersionInfo>
@@ -50,7 +50,7 @@
         <PackageName Value="LCL"/>
       </Item5>
     </RequiredPackages>
-    <Units Count="4">
+    <Units Count="6">
       <Unit0>
         <Filename Value="reparaciones.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -60,6 +60,7 @@
         <Filename Value="frm_principal.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmPrincipal"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frm_principal"/>
       </Unit1>
@@ -76,6 +77,20 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="SD_Configuracion"/>
       </Unit3>
+      <Unit4>
+        <Filename Value="dmtrabajos.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="DM_Trabajos"/>
+        <ResourceBaseClass Value="DataModule"/>
+        <UnitName Value="dmtrabajos"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="frm_trabajoae.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmTrabajoAE"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frm_TrabajoAE"/>
+      </Unit5>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

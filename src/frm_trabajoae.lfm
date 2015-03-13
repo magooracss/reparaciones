@@ -1,0 +1,193 @@
+object frmTrabajoAE: TfrmTrabajoAE
+  Left = 286
+  Height = 585
+  Top = 98
+  Width = 850
+  Caption = 'Equipo a Reparar'
+  ClientHeight = 585
+  ClientWidth = 850
+  Font.CharSet = ANSI_CHARSET
+  Font.Height = -13
+  Font.Name = 'Arial'
+  Font.Pitch = fpVariable
+  Font.Quality = fqDraft
+  Position = poOwnerFormCenter
+  LCLVersion = '1.2.6.0'
+  object gbCliente: TGroupBox
+    Left = 0
+    Height = 248
+    Top = 0
+    Width = 850
+    Align = alTop
+    Caption = 'Cliente'
+    ClientHeight = 230
+    ClientWidth = 846
+    TabOrder = 0
+    object DBEdit1: TDBEdit
+      Left = 8
+      Height = 24
+      Top = 24
+      Width = 416
+      DataField = 'Nombre'
+      DataSource = ds_Clientes
+      Anchors = [akTop, akLeft, akRight]
+      CharCase = ecNormal
+      MaxLength = 0
+      TabOrder = 0
+    end
+    object DBEdit2: TDBEdit
+      Left = 451
+      Height = 24
+      Top = 24
+      Width = 389
+      DataField = 'Organizacion'
+      DataSource = ds_Clientes
+      Anchors = [akTop, akRight]
+      CharCase = ecNormal
+      MaxLength = 0
+      TabOrder = 1
+    end
+    object Label1: TLabel
+      Left = 8
+      Height = 16
+      Top = 7
+      Width = 113
+      Caption = 'Apellido y Nombres'
+      ParentColor = False
+    end
+    object Label2: TLabel
+      Left = 451
+      Height = 16
+      Top = 7
+      Width = 119
+      Caption = 'Empresa/Organismo'
+      ParentColor = False
+    end
+    object DBEdit3: TDBEdit
+      Left = 8
+      Height = 24
+      Top = 68
+      Width = 144
+      DataField = 'documento'
+      DataSource = ds_Clientes
+      CharCase = ecNormal
+      MaxLength = 0
+      TabOrder = 2
+    end
+    object DBEdit4: TDBEdit
+      Left = 176
+      Height = 24
+      Top = 68
+      Width = 248
+      DataField = 'Telefono'
+      DataSource = ds_Clientes
+      CharCase = ecNormal
+      MaxLength = 0
+      TabOrder = 3
+    end
+    object DBEdit5: TDBEdit
+      Left = 451
+      Height = 24
+      Top = 68
+      Width = 389
+      DataField = 'mail'
+      DataSource = ds_Clientes
+      CharCase = ecNormal
+      MaxLength = 0
+      TabOrder = 4
+    end
+    object Label3: TLabel
+      Left = 8
+      Height = 16
+      Top = 51
+      Width = 66
+      Caption = 'Documento'
+      ParentColor = False
+    end
+    object Label4: TLabel
+      Left = 176
+      Height = 16
+      Top = 51
+      Width = 47
+      Caption = 'Teléfono'
+      ParentColor = False
+    end
+    object Label5: TLabel
+      Left = 451
+      Height = 16
+      Top = 51
+      Width = 33
+      Caption = 'Email'
+      ParentColor = False
+    end
+    object DBEdit6: TDBEdit
+      Left = 8
+      Height = 24
+      Top = 112
+      Width = 832
+      DataField = 'Domicilio'
+      DataSource = ds_Clientes
+      Anchors = [akTop, akLeft, akRight]
+      CharCase = ecNormal
+      MaxLength = 0
+      TabOrder = 5
+    end
+    object Label6: TLabel
+      Left = 8
+      Height = 16
+      Top = 95
+      Width = 53
+      Caption = 'Domicilio'
+      ParentColor = False
+    end
+    object DBMemo1: TDBMemo
+      Left = 8
+      Height = 58
+      Top = 160
+      Width = 832
+      DataField = 'Notras'
+      DataSource = ds_Clientes
+      TabOrder = 6
+    end
+    object Label7: TLabel
+      Left = 8
+      Height = 16
+      Top = 144
+      Width = 126
+      Caption = 'Notas sobre el cliente'
+      ParentColor = False
+    end
+  end
+  object GroupBox2: TGroupBox
+    Left = 0
+    Height = 151
+    Top = 248
+    Width = 850
+    Align = alTop
+    Caption = 'Equipo'
+    TabOrder = 1
+  end
+  object GroupBox3: TGroupBox
+    Left = 0
+    Height = 136
+    Top = 399
+    Width = 850
+    Align = alClient
+    Caption = 'Reparación'
+    TabOrder = 2
+  end
+  object Panel1: TPanel
+    Left = 0
+    Height = 50
+    Top = 535
+    Width = 850
+    Align = alBottom
+    Caption = 'Panel1'
+    TabOrder = 3
+  end
+  object ds_Clientes: TDataSource
+    DataSet = DM_Trabajos.Clientes
+    left = 568
+    top = 120
+  end
+end

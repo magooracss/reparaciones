@@ -11,30 +11,35 @@ object frmPrincipal: TfrmPrincipal
   Font.Name = 'Arial'
   Font.Pitch = fpVariable
   Font.Quality = fqDraft
+  OnShow = FormShow
   Position = poScreenCenter
   LCLVersion = '1.2.6.0'
   object ToolBar1: TToolBar
     Left = 0
-    Height = 68
+    Height = 90
     Top = 0
     Width = 846
     AutoSize = True
-    ButtonHeight = 66
-    ButtonWidth = 69
+    ButtonHeight = 88
+    ButtonWidth = 90
     Caption = 'ToolBar1'
+    Images = DM_General.ImgAcciones
+    ParentShowHint = False
+    ShowCaptions = True
+    ShowHint = True
     TabOrder = 0
     object ToolButton1: TToolButton
       Left = 1
       Top = 2
-      Caption = 'ToolButton1'
+      Action = TrIngreso
     end
     object ToolButton2: TToolButton
-      Left = 80
+      Left = 101
       Top = 2
-      Caption = 'ToolButton2'
+      Action = TrEgreso
     end
     object ToolButton3: TToolButton
-      Left = 70
+      Left = 91
       Top = 2
       Width = 10
       Caption = 'ToolButton3'
@@ -50,32 +55,78 @@ object frmPrincipal: TfrmPrincipal
   end
   object DBGrid1: TDBGrid
     Left = 0
-    Height = 368
-    Top = 68
+    Height = 346
+    Top = 90
     Width = 846
     Align = alClient
+    AutoFillColumns = True
     Color = clWindow
     Columns = <    
       item
-        Title.Caption = 'Title'
+        SizePriority = 0
+        Title.Alignment = taCenter
+        Title.Caption = 'Ingreso'
+        Width = 90
+        FieldName = 'Ingreso'
+        DisplayFormat = 'DD/MM/YYYY'
       end    
       item
-        Title.Caption = 'Title'
+        SizePriority = 0
+        Title.Alignment = taCenter
+        Title.Caption = 'Marca'
+        Width = 120
+        FieldName = 'EquipoMarca'
       end    
       item
-        Title.Caption = 'Title'
+        SizePriority = 0
+        Title.Alignment = taCenter
+        Title.Caption = 'Modelo'
+        Width = 120
+        FieldName = 'Equipomodelo'
       end    
       item
-        Title.Caption = 'Title'
+        Title.Alignment = taCenter
+        Title.Caption = 'Cliente'
+        Width = 256
+        FieldName = 'Cliente'
       end    
       item
-        Title.Caption = 'Title'
+        Title.Alignment = taCenter
+        Title.Caption = 'Diagnóstico'
+        Width = 256
       end>
+    DataSource = ds_pendientes
+    FixedCols = 0
+    Options = [dgTitles, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+    Scrollbars = ssAutoVertical
     TabOrder = 2
     TitleFont.CharSet = ANSI_CHARSET
     TitleFont.Height = -13
     TitleFont.Name = 'Arial'
     TitleFont.Pitch = fpVariable
     TitleFont.Quality = fqDraft
+  end
+  object ds_pendientes: TDataSource
+    DataSet = DM_Trabajos.qPendientes
+    left = 640
+    top = 115
+  end
+  object ActionList1: TActionList
+    Images = DM_General.ImgAcciones
+    left = 685
+    top = 185
+    object TrIngreso: TAction
+      Category = 'Trabajo'
+      Caption = 'Ingreso'
+      Hint = 'Ingreso de un nuevo equipo'
+      ImageIndex = 0
+      OnExecute = TrIngresoExecute
+    end
+    object TrEgreso: TAction
+      Category = 'Trabajo'
+      Caption = 'Egreso'
+      Hint = 'Entrega de un equipo'
+      ImageIndex = 1
+    end
   end
 end
