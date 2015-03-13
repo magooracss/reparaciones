@@ -121,12 +121,14 @@ object frmPrincipal: TfrmPrincipal
       Hint = 'Ingreso de un nuevo equipo'
       ImageIndex = 0
       OnExecute = TrIngresoExecute
+      ShortCut = 113
     end
     object TrEgreso: TAction
       Category = 'Trabajo'
       Caption = 'Egreso'
       Hint = 'Entrega de un equipo'
       ImageIndex = 1
+      ShortCut = 114
     end
   end
 end
