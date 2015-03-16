@@ -73,6 +73,14 @@ object frmPrincipal: TfrmPrincipal
       item
         SizePriority = 0
         Title.Alignment = taCenter
+        Title.Caption = 'Compromiso'
+        Width = 90
+        FieldName = 'Compromiso'
+        DisplayFormat = 'dd/mm/yyyy'
+      end    
+      item
+        SizePriority = 0
+        Title.Alignment = taCenter
         Title.Caption = 'Marca'
         Width = 120
         FieldName = 'EquipoMarca'
@@ -87,13 +95,14 @@ object frmPrincipal: TfrmPrincipal
       item
         Title.Alignment = taCenter
         Title.Caption = 'Cliente'
-        Width = 256
+        Width = 211
         FieldName = 'Cliente'
       end    
       item
         Title.Alignment = taCenter
         Title.Caption = 'Diagnóstico'
-        Width = 256
+        Width = 211
+        FieldName = 'Diagnostico'
       end>
     DataSource = ds_pendientes
     FixedCols = 0
@@ -105,6 +114,7 @@ object frmPrincipal: TfrmPrincipal
     TitleFont.Name = 'Arial'
     TitleFont.Pitch = fpVariable
     TitleFont.Quality = fqDraft
+    OnDblClick = DBGrid1DblClick
   end
   object ds_pendientes: TDataSource
     DataSet = DM_Trabajos.qPendientes
@@ -128,6 +138,7 @@ object frmPrincipal: TfrmPrincipal
       Caption = 'Egreso'
       Hint = 'Entrega de un equipo'
       ImageIndex = 1
+      OnExecute = TrEgresoExecute
       ShortCut = 114
     end
   end

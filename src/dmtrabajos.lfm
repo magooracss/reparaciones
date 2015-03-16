@@ -1,9 +1,9 @@
 object DM_Trabajos: TDM_Trabajos
   OldCreateOrder = False
-  Height = 361
+  Height = 465
   HorizontalOffset = 368
   VerticalOffset = 150
-  Width = 602
+  Width = 628
   object Clientes: TRxMemoryData
     FieldDefs = <    
       item
@@ -43,13 +43,13 @@ object DM_Trabajos: TDM_Trabajos
         Size = 100
       end    
       item
-        Name = 'mail'
+        Name = 'email'
         DataType = ftString
         Precision = 0
         Size = 100
       end    
       item
-        Name = 'Notras'
+        Name = 'Notas'
         DataType = ftString
         Precision = 0
         Size = 2000
@@ -129,37 +129,37 @@ object DM_Trabajos: TDM_Trabajos
       Required = False
       Size = 100
     end
-    object Clientesmail: TStringField
+    object ClientesbVisible: TLongintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'bVisible'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object Clientesemail: TStringField
       DisplayWidth = 100
       FieldKind = fkData
-      FieldName = 'mail'
-      Index = 6
+      FieldName = 'email'
+      Index = 7
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
       Size = 100
     end
-    object ClientesNotras: TStringField
+    object ClientesNotas: TStringField
       DisplayWidth = 2000
       FieldKind = fkData
-      FieldName = 'Notras'
-      Index = 7
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Size = 2000
-    end
-    object ClientesbVisible: TLongintField
-      DisplayWidth = 10
-      FieldKind = fkData
-      FieldName = 'bVisible'
+      FieldName = 'Notas'
       Index = 8
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+      Size = 2000
     end
   end
   object qPendientes: TZQuery
@@ -181,12 +181,13 @@ object DM_Trabajos: TDM_Trabajos
       '      , E.nSerie as EquipoSerie'
       '      , E.notas as EquipoNotas'
       '      , M.Marca as EquipoMarca'
+      '     , T.id as TrabajoID'
       'FROM Trabajos T'
       '     LEFT JOIN Clientes C ON T.cliente_id = C.id'
       '     LEFT JOIN Equipos E ON T.equipo_id = E.id'
       '     LEFT JOIN Marcas as M ON E.marca_id = M.id'
       'WHERE (T.bVisible = 1)'
-      '      and (T.fEgreso = 0)'
+      '      and (T.bEgreso = 0)'
       'ORDER BY T.fIngreso'
     )
     Params = <>
@@ -364,6 +365,16 @@ object DM_Trabajos: TDM_Trabajos
       ReadOnly = False
       Required = False
       Size = 200
+    end
+    object qPendientesTrabajoID: TLargeintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'TrabajoID'
+      Index = 16
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
     end
   end
   object qSELClientes: TZQuery
@@ -1719,7 +1730,7 @@ object DM_Trabajos: TDM_Trabajos
     PacketRecords = 0
     left = 344
     top = 32
-    object Equiposid1: TLongintField
+    object Marcasid: TLongintField
       DisplayWidth = 10
       FieldKind = fkData
       FieldName = 'id'
@@ -1729,69 +1740,26 @@ object DM_Trabajos: TDM_Trabajos
       ReadOnly = False
       Required = False
     end
-    object Equiposmarca_id1: TLongintField
-      DisplayWidth = 10
+    object Marcasmarca: TStringField
+      DisplayWidth = 50
       FieldKind = fkData
-      FieldName = 'marca_id'
+      FieldName = 'marca'
       Index = 1
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+      Size = 50
     end
-    object Equiposmodelo1: TStringField
-      DisplayWidth = 100
+    object MarcasbVisible: TLongintField
+      DisplayWidth = 10
       FieldKind = fkData
-      FieldName = 'modelo'
+      FieldName = 'bVisible'
       Index = 2
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
-      Size = 100
-    end
-    object EquiposnSerie1: TStringField
-      DisplayWidth = 100
-      FieldKind = fkData
-      FieldName = 'nSerie'
-      Index = 3
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Size = 100
-    end
-    object Equiposnotas1: TStringField
-      DisplayWidth = 2000
-      FieldKind = fkData
-      FieldName = 'notas'
-      Index = 4
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Size = 2000
-    end
-    object EquiposbVisible1: TLongintField
-      DisplayWidth = 10
-      FieldKind = fkData
-      FieldName = 'bVisible'
-      Index = 5
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-    end
-    object EquiposMarca1: TStringField
-      DisplayWidth = 50
-      FieldKind = fkData
-      FieldName = 'Marca'
-      Index = 6
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Size = 50
     end
   end
   object qSELMarcas: TZQuery
@@ -1889,103 +1857,6 @@ object DM_Trabajos: TDM_Trabajos
         Name = 'bVisible'
         ParamType = ptUnknown
       end>
-    object qSELClientesid8: TLargeintField
-      DisplayWidth = 10
-      FieldKind = fkData
-      FieldName = 'id'
-      Index = 0
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-    end
-    object qSELClientesNombre8: TStringField
-      DisplayWidth = 2000
-      FieldKind = fkData
-      FieldName = 'Nombre'
-      Index = 1
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Size = 2000
-    end
-    object qSELClientesOrganizacion8: TStringField
-      DisplayWidth = 2000
-      FieldKind = fkData
-      FieldName = 'Organizacion'
-      Index = 2
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Size = 2000
-    end
-    object qSELClientesdocumento8: TStringField
-      DisplayWidth = 200
-      FieldKind = fkData
-      FieldName = 'documento'
-      Index = 3
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Size = 200
-    end
-    object qSELClientesDomicilio8: TStringField
-      DisplayWidth = 2000
-      FieldKind = fkData
-      FieldName = 'Domicilio'
-      Index = 4
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Size = 2000
-    end
-    object qSELClientesTelefono8: TStringField
-      DisplayWidth = 400
-      FieldKind = fkData
-      FieldName = 'Telefono'
-      Index = 5
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Size = 400
-    end
-    object qSELClientesemail8: TStringField
-      DisplayWidth = 400
-      FieldKind = fkData
-      FieldName = 'email'
-      Index = 6
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Size = 400
-    end
-    object qSELClientesnotas8: TStringField
-      DisplayWidth = 8000
-      FieldKind = fkData
-      FieldName = 'notas'
-      Index = 7
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Size = 8000
-    end
-    object qSELClientesbVisible8: TLargeintField
-      DisplayWidth = 10
-      FieldKind = fkData
-      FieldName = 'bVisible'
-      Index = 8
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-    end
   end
   object qUPDMarcas: TZQuery
     Connection = DM_General.cnxGeneral
@@ -2029,103 +1900,6 @@ object DM_Trabajos: TDM_Trabajos
         Name = 'id'
         ParamType = ptUnknown
       end>
-    object qSELClientesid9: TLargeintField
-      DisplayWidth = 10
-      FieldKind = fkData
-      FieldName = 'id'
-      Index = 0
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-    end
-    object qSELClientesNombre9: TStringField
-      DisplayWidth = 2000
-      FieldKind = fkData
-      FieldName = 'Nombre'
-      Index = 1
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Size = 2000
-    end
-    object qSELClientesOrganizacion9: TStringField
-      DisplayWidth = 2000
-      FieldKind = fkData
-      FieldName = 'Organizacion'
-      Index = 2
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Size = 2000
-    end
-    object qSELClientesdocumento9: TStringField
-      DisplayWidth = 200
-      FieldKind = fkData
-      FieldName = 'documento'
-      Index = 3
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Size = 200
-    end
-    object qSELClientesDomicilio9: TStringField
-      DisplayWidth = 2000
-      FieldKind = fkData
-      FieldName = 'Domicilio'
-      Index = 4
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Size = 2000
-    end
-    object qSELClientesTelefono9: TStringField
-      DisplayWidth = 400
-      FieldKind = fkData
-      FieldName = 'Telefono'
-      Index = 5
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Size = 400
-    end
-    object qSELClientesemail9: TStringField
-      DisplayWidth = 400
-      FieldKind = fkData
-      FieldName = 'email'
-      Index = 6
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Size = 400
-    end
-    object qSELClientesnotas9: TStringField
-      DisplayWidth = 8000
-      FieldKind = fkData
-      FieldName = 'notas'
-      Index = 7
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Size = 8000
-    end
-    object qSELClientesbVisible9: TLargeintField
-      DisplayWidth = 10
-      FieldKind = fkData
-      FieldName = 'bVisible'
-      Index = 8
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-    end
   end
   object qDELMarcas: TZQuery
     Connection = DM_General.cnxGeneral
@@ -2148,103 +1922,6 @@ object DM_Trabajos: TDM_Trabajos
         Name = 'id'
         ParamType = ptUnknown
       end>
-    object qSELClientesid10: TLargeintField
-      DisplayWidth = 10
-      FieldKind = fkData
-      FieldName = 'id'
-      Index = 0
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-    end
-    object qSELClientesNombre10: TStringField
-      DisplayWidth = 2000
-      FieldKind = fkData
-      FieldName = 'Nombre'
-      Index = 1
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Size = 2000
-    end
-    object qSELClientesOrganizacion10: TStringField
-      DisplayWidth = 2000
-      FieldKind = fkData
-      FieldName = 'Organizacion'
-      Index = 2
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Size = 2000
-    end
-    object qSELClientesdocumento10: TStringField
-      DisplayWidth = 200
-      FieldKind = fkData
-      FieldName = 'documento'
-      Index = 3
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Size = 200
-    end
-    object qSELClientesDomicilio10: TStringField
-      DisplayWidth = 2000
-      FieldKind = fkData
-      FieldName = 'Domicilio'
-      Index = 4
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Size = 2000
-    end
-    object qSELClientesTelefono10: TStringField
-      DisplayWidth = 400
-      FieldKind = fkData
-      FieldName = 'Telefono'
-      Index = 5
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Size = 400
-    end
-    object qSELClientesemail10: TStringField
-      DisplayWidth = 400
-      FieldKind = fkData
-      FieldName = 'email'
-      Index = 6
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Size = 400
-    end
-    object qSELClientesnotas10: TStringField
-      DisplayWidth = 8000
-      FieldKind = fkData
-      FieldName = 'notas'
-      Index = 7
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-      Size = 8000
-    end
-    object qSELClientesbVisible10: TLargeintField
-      DisplayWidth = 10
-      FieldKind = fkData
-      FieldName = 'bVisible'
-      Index = 8
-      LookupCache = False
-      ProviderFlags = [pfInUpdate, pfInWhere]
-      ReadOnly = False
-      Required = False
-    end
   end
   object Trabajos: TRxMemoryData
     FieldDefs = <    
@@ -2983,6 +2660,167 @@ object DM_Trabajos: TDM_Trabajos
       FieldKind = fkData
       FieldName = 'bVisible'
       Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object qBUSClientes: TZQuery
+    Connection = DM_General.cnxGeneral
+    SQL.Strings = (
+      'SELECT *'
+      'FROM Clientes'
+      'WHERE (id = :id)'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    left = 136
+    top = 384
+    ParamData = <    
+      item
+        DataType = ftUnknown
+        Name = 'id'
+        ParamType = ptUnknown
+      end>
+    object qBUSClientesid: TLargeintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'id'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qBUSClientesNombre: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'Nombre'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qBUSClientesOrganizacion: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'Organizacion'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qBUSClientesdocumento: TStringField
+      DisplayWidth = 200
+      FieldKind = fkData
+      FieldName = 'documento'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object qBUSClientesDomicilio: TStringField
+      DisplayWidth = 2000
+      FieldKind = fkData
+      FieldName = 'Domicilio'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 2000
+    end
+    object qBUSClientesTelefono: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'Telefono'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object qBUSClientesemail: TStringField
+      DisplayWidth = 400
+      FieldKind = fkData
+      FieldName = 'email'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 400
+    end
+    object qBUSClientesnotas: TStringField
+      DisplayWidth = 8000
+      FieldKind = fkData
+      FieldName = 'notas'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 8000
+    end
+    object qBUSClientesbVisible: TLargeintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'bVisible'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object qLevantarMarcas: TZQuery
+    Connection = DM_General.cnxGeneral
+    SQL.Strings = (
+      'SELECT *'
+      'FROM  Marcas '
+      'WHERE (bVisible = 1)'
+    )
+    Params = <>
+    left = 344
+    top = 384
+    object qSELMarcasid1: TLargeintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'id'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object qSELMarcasMarca1: TStringField
+      DisplayWidth = 200
+      FieldKind = fkData
+      FieldName = 'Marca'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object qSELMarcasbVisible1: TLargeintField
+      DisplayWidth = 10
+      FieldKind = fkData
+      FieldName = 'bVisible'
+      Index = 2
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False

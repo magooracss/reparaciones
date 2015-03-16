@@ -8,7 +8,7 @@ uses
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms, rxnew, zcomponent, frm_principal, dmgeneral, SD_Configuracion, 
-dmtrabajos, frm_trabajoae
+dmtrabajos, frm_trabajoae, frm_resultadosClientes, frm_editarMarcas
   { you can add units after this };
 
 {$R *.res}
@@ -21,6 +21,8 @@ begin
   Application.CreateForm(TDM_Trabajos, DM_Trabajos);
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
   Application.CreateForm(TfrmTrabajoAE, frmTrabajoAE);
+  Application.CreateForm(TfrmResultadosClientes, frmResultadosClientes);
+  Application.CreateForm(TfrmEditarMarcas, frmEditarMarcas);
   Application.Run;
 end.
 

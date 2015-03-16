@@ -14,31 +14,42 @@ type
   { TDM_Trabajos }
 
   TDM_Trabajos = class(TDataModule)
+    Clientesemail: TStringField;
+    ClientesNotas: TStringField;
     Equipos: TRxMemoryData;
     ClientesbVisible: TLongintField;
     Clientesdocumento: TStringField;
     ClientesDomicilio: TStringField;
     Clientesid: TLongintField;
-    Clientesmail: TStringField;
     ClientesNombre: TStringField;
-    ClientesNotras: TStringField;
     ClientesOrganizacion: TStringField;
     ClientesTelefono: TStringField;
     Marcas: TRxMemoryData;
     EquiposbVisible: TLongintField;
-    EquiposbVisible1: TLongintField;
     Equiposid: TLongintField;
-    Equiposid1: TLongintField;
     EquiposMarca: TStringField;
-    EquiposMarca1: TStringField;
     Equiposmarca_id: TLongintField;
-    Equiposmarca_id1: TLongintField;
     Equiposmodelo: TStringField;
-    Equiposmodelo1: TStringField;
     Equiposnotas: TStringField;
-    Equiposnotas1: TStringField;
     EquiposnSerie: TStringField;
-    EquiposnSerie1: TStringField;
+    MarcasbVisible: TLongintField;
+    Marcasid: TLongintField;
+    Marcasmarca: TStringField;
+    qBUSClientes: TZQuery;
+    qBUSClientesbVisible: TLargeintField;
+    qBUSClientesdocumento: TStringField;
+    qBUSClientesDomicilio: TStringField;
+    qBUSClientesemail: TStringField;
+    qBUSClientesid: TLargeintField;
+    qBUSClientesNombre: TStringField;
+    qBUSClientesnotas: TStringField;
+    qBUSClientesOrganizacion: TStringField;
+    qBUSClientesTelefono: TStringField;
+    qPendientesTrabajoID: TLargeintField;
+    qLevantarMarcas: TZQuery;
+    qSELMarcasbVisible1: TLargeintField;
+    qSELMarcasid1: TLargeintField;
+    qSELMarcasMarca1: TStringField;
     qSELTrabajobEgreso: TLargeintField;
     qSELTrabajobVisible: TLargeintField;
     qSELTrabajocliente_id: TLargeintField;
@@ -76,51 +87,24 @@ type
     Clientes: TRxMemoryData;
     qPendientes: TZQuery;
     qINSClientes: TZQuery;
-    qSELClientesbVisible10: TLargeintField;
     qSELClientesbVisible12: TLargeintField;
     qSELClientesbVisible13: TLargeintField;
-    qSELClientesbVisible8: TLargeintField;
-    qSELClientesbVisible9: TLargeintField;
-    qSELClientesdocumento10: TStringField;
     qSELClientesdocumento12: TStringField;
     qSELClientesdocumento13: TStringField;
-    qSELClientesdocumento8: TStringField;
-    qSELClientesdocumento9: TStringField;
-    qSELClientesDomicilio10: TStringField;
     qSELClientesDomicilio12: TStringField;
     qSELClientesDomicilio13: TStringField;
-    qSELClientesDomicilio8: TStringField;
-    qSELClientesDomicilio9: TStringField;
-    qSELClientesemail10: TStringField;
     qSELClientesemail12: TStringField;
     qSELClientesemail13: TStringField;
-    qSELClientesemail8: TStringField;
-    qSELClientesemail9: TStringField;
-    qSELClientesid10: TLargeintField;
     qSELClientesid12: TLargeintField;
     qSELClientesid13: TLargeintField;
-    qSELClientesid8: TLargeintField;
-    qSELClientesid9: TLargeintField;
-    qSELClientesNombre10: TStringField;
     qSELClientesNombre12: TStringField;
     qSELClientesNombre13: TStringField;
-    qSELClientesNombre8: TStringField;
-    qSELClientesNombre9: TStringField;
-    qSELClientesnotas10: TStringField;
     qSELClientesnotas12: TStringField;
     qSELClientesnotas13: TStringField;
-    qSELClientesnotas8: TStringField;
-    qSELClientesnotas9: TStringField;
-    qSELClientesOrganizacion10: TStringField;
     qSELClientesOrganizacion12: TStringField;
     qSELClientesOrganizacion13: TStringField;
-    qSELClientesOrganizacion8: TStringField;
-    qSELClientesOrganizacion9: TStringField;
-    qSELClientesTelefono10: TStringField;
     qSELClientesTelefono12: TStringField;
     qSELClientesTelefono13: TStringField;
-    qSELClientesTelefono8: TStringField;
-    qSELClientesTelefono9: TStringField;
     qSELEquipos: TZQuery;
     qSELClientesbVisible3: TLargeintField;
     qSELClientesbVisible5: TLargeintField;
@@ -219,11 +203,24 @@ type
 
   private
     procedure AbrirTablas;
+    procedure Buscar (elWhere: string);
   public
     procedure EquiposPendientes;
     procedure TrabajoInsertar;
     procedure TrabajoEditar (id: Integer);
     procedure TrabajoGrabar;
+
+    procedure LevantarMarcas;
+
+    procedure BuscarApyNombre (dato: string; DesdeElPrincipio: Boolean);
+    procedure BuscarOrganismo (dato: string; DesdeElPrincipio: Boolean);
+    procedure BuscarDocumento (dato: string; DesdeElPrincipio: Boolean);
+    procedure BuscarTelefono (dato: string; DesdeElPrincipio: Boolean);
+    procedure BuscarEmail (dato: string; DesdeElPrincipio: Boolean);
+
+    procedure CargarClienteID (id: integer);
+
+    procedure BorrarMarca;
   end;
 
 var
@@ -265,6 +262,8 @@ begin
   begin
     FieldByName('fIngreso').AsDateTime:= Now;
     FieldByName('bEgreso').asInteger:= 0;
+    FieldByName('cliente_id').asInteger:= Clientesid.asInteger;
+    FieldByName('equipo_id').asInteger:= Equiposid.asInteger;
     FieldByName('bVisible').asInteger:= 1;
   end;
 end;
@@ -289,21 +288,158 @@ end;
 procedure TDM_Trabajos.TrabajoInsertar;
 begin
   AbrirTablas;
-
+  Trabajos.Insert;
 end;
 
 procedure TDM_Trabajos.TrabajoEditar(id: Integer);
 begin
   AbrirTablas;
 
+  With qSELTrabajo do
+  begin
+    if active then close;
+    ParamByName('id').asInteger:= id;
+    Open;
+    Trabajos.LoadFromDataSet(qSELTrabajo, 0, lmAppend);
+    close;
+  end;
+  With qSELClientes do
+  begin
+    if active then close;
+    ParamByName('id').asInteger:= Trabajoscliente_id.asInteger;
+    Open;
+    Clientes.LoadFromDataSet(qSELClientes, 0, lmAppend);
+    close;
+  end;
+  With qSELEquipos do
+  begin
+    if active then close;
+    ParamByName('id').asInteger:= Trabajosequipo_id.asInteger;
+    Open;
+    Equipos.LoadFromDataSet(qSELEquipos, 0, lmAppend);
+    close;
+  end;
+  Clientes.Edit;
+  Equipos.Edit;
+  Trabajos.Edit;
 end;
 
 procedure TDM_Trabajos.TrabajoGrabar;
 begin
+  With Trabajos do
+  begin
+    Edit;
+    Trabajosequipo_id.AsInteger:= Equiposid.AsInteger;
+    Trabajoscliente_id.AsInteger:= Clientesid.AsInteger;
+    Post;
+  end;
   DM_General.GrabarDatos(qSELClientes, qINSClientes, qUPDClientes, Clientes, 'id');
   DM_General.GrabarDatos(qSELEquipos, qINSEquipos, qUPDEquipos, Equipos, 'id');
   DM_General.GrabarDatos(qSELMarcas, qINSMarcas, qUPDMarcas, Marcas, 'id');
   DM_General.GrabarDatos(qSELTrabajo, qINSTrabajos, qUPDTrabajos, Trabajos, 'id');
+end;
+
+procedure TDM_Trabajos.LevantarMarcas;
+begin
+  DM_General.ReiniciarTabla(Marcas);
+  with qLevantarMarcas do
+  begin
+    if active then close;
+    Open;
+    Marcas.LoadFromDataSet(qLevantarMarcas, 0, lmAppend);
+    close;
+  end;
+end;
+
+(*******************************************************************************
+*** Búsquedas
+********************************************************************************)
+
+procedure TDM_Trabajos.Buscar(elWhere: string);
+var
+  elSQL: string;
+begin
+  elSQL:= 'SELECT * FROM Clientes ';
+  with qBUSClientes do
+  begin
+    if active then Close;
+    SQL.Clear;
+    SQL.Add(elSQL);
+    SQL.Add(elWhere);
+    Open;
+  end;
+end;
+
+
+procedure TDM_Trabajos.BuscarApyNombre(dato: string; DesdeElPrincipio: Boolean);
+begin
+  if DesdeElPrincipio then
+   Buscar ('WHERE Nombre LIKE ''' + dato + '%''')
+  else
+   Buscar ('WHERE Nombre LIKE ''%' + dato + '%''')
+end;
+
+procedure TDM_Trabajos.BuscarOrganismo(dato: string; DesdeElPrincipio: Boolean);
+begin
+  if DesdeElPrincipio then
+   Buscar ('WHERE Organizacion LIKE ''' + dato + '%''')
+  else
+   Buscar ('WHERE Organizacion LIKE ''%' + dato + '%''')
+end;
+
+procedure TDM_Trabajos.BuscarDocumento(dato: string; DesdeElPrincipio: Boolean);
+begin
+  if DesdeElPrincipio then
+   Buscar ('WHERE Documento LIKE ''' + dato + '%''')
+  else
+   Buscar ('WHERE Documento LIKE ''%' + dato + '%''')
+end;
+
+procedure TDM_Trabajos.BuscarTelefono(dato: string; DesdeElPrincipio: Boolean);
+begin
+  if DesdeElPrincipio then
+   Buscar ('WHERE Telefono LIKE ''' + dato + '%''')
+  else
+   Buscar ('WHERE Telefono LIKE ''%' + dato + '%''')
+end;
+
+procedure TDM_Trabajos.BuscarEmail(dato: string; DesdeElPrincipio: Boolean);
+begin
+  if DesdeElPrincipio then
+   Buscar ('WHERE Email LIKE ''' + dato + '%''')
+  else
+   Buscar ('WHERE Email LIKE ''%' + dato + '%''')
+end;
+
+(*******************************************************************************
+*** Carga de datos
+********************************************************************************)
+
+procedure TDM_Trabajos.CargarClienteID(id: integer);
+begin
+  with qSELClientes do
+  begin
+    DM_General.ReiniciarTabla(Clientes);
+    if Active then close;
+    ParamByName('id').asInteger:= id;
+    Open;
+    Clientes.LoadFromDataSet(qSELClientes, 0, lmAppend);
+    Close;
+  end;
+end;
+
+(*******************************************************************************
+*** Borrado
+********************************************************************************)
+
+procedure TDM_Trabajos.BorrarMarca;
+begin
+  with qDELMarcas do
+  begin
+    ParamByName('id').AsInteger:= Marcasid.asInteger;
+    ExecSQL;
+  end;
+  Marcas.Delete;
 end;
 
 end.

@@ -1,8 +1,9 @@
 object frmTrabajoAE: TfrmTrabajoAE
-  Left = 237
+  Left = 249
   Height = 585
-  Top = 49
+  Top = 70
   Width = 850
+  BorderIcons = [biMinimize, biMaximize]
   Caption = 'Equipo a Reparar'
   ClientHeight = 585
   ClientWidth = 850
@@ -100,7 +101,7 @@ object frmTrabajoAE: TfrmTrabajoAE
       Height = 24
       Top = 68
       Width = 389
-      DataField = 'mail'
+      DataField = 'email'
       DataSource = ds_Clientes
       CharCase = ecNormal
       Color = clMoneyGreen
@@ -158,7 +159,7 @@ object frmTrabajoAE: TfrmTrabajoAE
       Top = 160
       Width = 832
       Anchors = [akTop, akLeft, akRight]
-      DataField = 'Notras'
+      DataField = 'Notas'
       DataSource = ds_Clientes
       TabOrder = 6
     end
@@ -169,6 +170,16 @@ object frmTrabajoAE: TfrmTrabajoAE
       Width = 126
       Caption = 'Notas sobre el cliente'
       ParentColor = False
+    end
+    object ckBusPrincipio: TCheckBox
+      Left = 598
+      Height = 20
+      Top = -8
+      Width = 248
+      Caption = 'Buscar solo desde el principio del texto'
+      Checked = True
+      State = cbChecked
+      TabOrder = 7
     end
   end
   object GroupBox2: TGroupBox
@@ -181,22 +192,6 @@ object frmTrabajoAE: TfrmTrabajoAE
     ClientHeight = 118
     ClientWidth = 846
     TabOrder = 1
-    object DBLookupComboBox1: TDBLookupComboBox
-      Left = 8
-      Height = 24
-      Top = 23
-      Width = 240
-      DataField = 'marca_id'
-      DataSource = ds_Equipos
-      KeyField = 'id'
-      ListField = 'Marca'
-      ListFieldIndex = 0
-      ListSource = ds_Marcas
-      LookupCache = False
-      ReadOnly = True
-      Style = csDropDownList
-      TabOrder = 0
-    end
     object DBEdit1: TDBEdit
       Left = 312
       Height = 24
@@ -207,7 +202,7 @@ object frmTrabajoAE: TfrmTrabajoAE
       Anchors = [akTop, akLeft, akRight]
       CharCase = ecNormal
       MaxLength = 0
-      TabOrder = 1
+      TabOrder = 0
     end
     object DBEdit2: TDBEdit
       Left = 656
@@ -219,7 +214,7 @@ object frmTrabajoAE: TfrmTrabajoAE
       Anchors = [akTop, akRight]
       CharCase = ecNormal
       MaxLength = 0
-      TabOrder = 2
+      TabOrder = 1
     end
     object DBMemo2: TDBMemo
       Left = 8
@@ -229,7 +224,7 @@ object frmTrabajoAE: TfrmTrabajoAE
       Anchors = [akTop, akLeft, akRight]
       DataField = 'notas'
       DataSource = ds_Equipos
-      TabOrder = 3
+      TabOrder = 2
     end
     object Label8: TLabel
       Left = 8
@@ -401,6 +396,16 @@ object frmTrabajoAE: TfrmTrabajoAE
         F4FFF3F3F3FFE9E9E9E4D7D7D75DBDBDBD07BDBDBD000000000000000000BDBD
         BD00B8B7B5004B70FF087E9EFE6287A9FFC06F94F884375DD81A
       }
+      OnClick = SpeedButton1Click
+    end
+    object cbMarcas: TComboBox
+      Left = 8
+      Height = 24
+      Top = 23
+      Width = 236
+      ItemHeight = 16
+      TabOrder = 3
+      Text = 'cbMarcas'
     end
   end
   object GroupBox3: TGroupBox
@@ -413,7 +418,7 @@ object frmTrabajoAE: TfrmTrabajoAE
     ClientHeight = 133
     ClientWidth = 846
     TabOrder = 2
-    object PageControl1: TPageControl
+    object PCDatosMovimiento: TPageControl
       Left = 0
       Height = 133
       Top = 0
@@ -482,6 +487,7 @@ object frmTrabajoAE: TfrmTrabajoAE
           Top = 40
           Width = 838
           Align = alBottom
+          Anchors = [akTop, akLeft, akRight, akBottom]
           DataField = 'Diagnostico'
           DataSource = ds_Trabajos
           TabOrder = 2
@@ -516,12 +522,13 @@ object frmTrabajoAE: TfrmTrabajoAE
           DataField = 'fEgreso'
           DataSource = ds_Trabajos
         end
-        object DBMemo3: TDBMemo
+        object dbDetalleTrabajo: TDBMemo
           Left = 0
           Height = 64
           Top = 40
           Width = 838
           Align = alBottom
+          Anchors = [akTop, akLeft, akRight, akBottom]
           DataField = 'Detalle'
           DataSource = ds_Trabajos
           TabOrder = 1
@@ -555,7 +562,7 @@ object frmTrabajoAE: TfrmTrabajoAE
     ClientWidth = 850
     TabOrder = 3
     object btnSalir: TBitBtn
-      Left = 633
+      Left = 336
       Height = 44
       Hint = 'Graba los datos y sale de la pantalla'
       Top = 0
@@ -694,10 +701,10 @@ object frmTrabajoAE: TfrmTrabajoAE
         0000000000000000000000000000000000000000000000000000
       }
       OnClick = btnSalirClick
-      TabOrder = 0
+      TabOrder = 1
     end
     object BitBtn2: TBitBtn
-      Left = 329
+      Left = 16
       Height = 44
       Hint = 'Graba e Imprime la Orden de Trabajo'
       Top = 0
@@ -835,14 +842,15 @@ object frmTrabajoAE: TfrmTrabajoAE
         0000000000000000000000000000000000000000000000000000000000000000
         0000000000000000000000000000000000000000000000000000
       }
-      TabOrder = 1
+      TabOrder = 0
     end
     object btnCancelar: TBitBtn
-      Left = 33
+      Left = 656
       Height = 44
       Hint = 'Cancela todo y sale de la pantalla'
       Top = 0
       Width = 184
+      Anchors = [akTop, akRight]
       Caption = 'Cancelar'
       Glyph.Data = {
         36100000424D3610000000000000360000002800000020000000200000000100
